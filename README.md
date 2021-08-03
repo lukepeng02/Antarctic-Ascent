@@ -2,6 +2,9 @@
 
 A platforming game based on the quintessential Doodle Jump.
 
+## Installation
+To install, simply run `pip3 install pygame` on the command line.
+
 ## Instructions
 Use the left and right arrow keys to move side to side. Press the space bar to shoot an icicle.
 Have fun!
