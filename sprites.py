@@ -1,12 +1,12 @@
 import pygame, random
-from constants import width, height
+from constants import WIDTH, HEIGHT
 
 class MainCharacter(pygame.sprite.Sprite):
     """The penguin sprite for the player"""
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("penguin.png").convert_alpha()
+        self.image = pygame.image.load("assets/penguin.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (40, 54))
 
         self.rect = self.image.get_rect()
@@ -20,7 +20,7 @@ class Jump_Platform(pygame.sprite.Sprite):
     def __init__(self, x_center, y_center):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("platform.png").convert_alpha()
+        self.image = pygame.image.load("assets/platform.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (80, 12))
 
         self.rect = self.image.get_rect()
@@ -35,11 +35,11 @@ class Jump_Platform(pygame.sprite.Sprite):
 class Moving_Platform(pygame.sprite.Sprite):
     """Moving stone platforms"""
     max_left = 0
-    max_right = width
+    max_right = WIDTH
     def __init__(self, max_l, max_r, y_bottom):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("stone.png").convert_alpha()
+        self.image = pygame.image.load("assets/stone.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (80, 12))
     
         self.rect = self.image.get_rect()
@@ -71,7 +71,7 @@ class Cloud_Platform(pygame.sprite.Sprite):
     def __init__(self, x_center, y_center):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("cloud.png").convert_alpha()
+        self.image = pygame.image.load("assets/cloud.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (80, 12))
 
         self.rect = self.image.get_rect()
@@ -84,11 +84,11 @@ class Bottom_Platform(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("bricks.png").convert_alpha()
-        self.image = pygame.transform.scale(self.image, (width, 40))
+        self.image = pygame.image.load("assets/bricks.png").convert_alpha()
+        self.image = pygame.transform.scale(self.image, (WIDTH, 40))
 
         self.rect = self.image.get_rect()
-        self.rect.center = (width / 2, height - 20)
+        self.rect.center = (WIDTH / 2, HEIGHT - 20)
 
         self.trampoline = None
 
@@ -97,7 +97,7 @@ class Trampoline(pygame.sprite.Sprite):
     def __init__(self, x_center, y_bottom):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("trampoline.png").convert_alpha()
+        self.image = pygame.image.load("assets/trampoline.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (20, 12))
 
         self.rect = self.image.get_rect()
@@ -109,7 +109,7 @@ class Seal(pygame.sprite.Sprite):
     def __init__(self, x_center, y_center):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("seal.png").convert_alpha()
+        self.image = pygame.image.load("assets/seal.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (60, 36))
 
         self.rect = self.image.get_rect()
@@ -120,7 +120,7 @@ class Icicle(pygame.sprite.Sprite):
     def __init__(self, x_center, y_bottom):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load("icicle.png").convert_alpha()
+        self.image = pygame.image.load("assets/icicle.png").convert_alpha()
         self.image = pygame.transform.scale(self.image, (10, 20))
 
         self.rect = self.image.get_rect()

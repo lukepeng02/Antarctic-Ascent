@@ -1,5 +1,5 @@
 import pygame
 
 pygame.init()
-size = width, height = 400, 600
-my_font = pygame.font.SysFont("Times New Roman", 18)
+SIZE = WIDTH, HEIGHT = 400, 600
+MY_FONT = pygame.font.SysFont("Times New Roman", 18)

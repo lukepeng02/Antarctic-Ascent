@@ -2,11 +2,11 @@ import gc
 import sys, pygame, random
 from sprites import Icicle, MainCharacter, Jump_Platform, Moving_Platform, \
     Bottom_Platform, Cloud_Platform, Seal
-from constants import size, width, height, my_font
+from constants import SIZE, WIDTH, HEIGHT, MY_FONT
 
 pygame.init()
 
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(SIZE)
 clock = pygame.time.Clock()
 
 speed = [0, 0]
@@ -37,7 +37,7 @@ def generate_initial_platforms():
     for i in range(10):
         added = False
         while not added:
-            new_platform = Jump_Platform(random.randint(40, width - 40),
+            new_platform = Jump_Platform(random.randint(40, WIDTH - 40),
             random.randint(55 * i, 55 * (i + 1)))
             if pygame.sprite.spritecollideany(new_platform, all_sprites) is None:
                 platforms.add(new_platform)
@@ -56,13 +56,13 @@ def generate_random_platform():
     while not added:
         random_int = random.randint(1, 10)
         if random_int in range(1, 8):
-            new_platform = Jump_Platform(random.randint(40, width - 40),
+            new_platform = Jump_Platform(random.randint(40, WIDTH - 40),
                 random.randint(newest_platform.rect.top - 100,
                 newest_platform.rect.top - 10))
             if pygame.sprite.spritecollideany(new_platform, all_sprites) is None:
                 added = True
         elif random_int == 8:
-            new_platform = Cloud_Platform(random.randint(40, width - 40),
+            new_platform = Cloud_Platform(random.randint(40, WIDTH - 40),
                 random.randint(newest_platform.rect.top - 100,
                 newest_platform.rect.top - 10))
             if pygame.sprite.spritecollideany(new_platform, all_sprites) is None:
@@ -98,7 +98,7 @@ def move_screen():
         try_spawn_seal()
     for entity in all_sprites:
         entity.rect.top += abs(speed[1])
-        if entity.rect.top >= height:
+        if entity.rect.top >= HEIGHT:
             entity.kill()
             del entity
 
@@ -106,7 +106,7 @@ def try_spawn_seal():
     """Try to spawn an enemy"""
     if random.randint(1, 250) != 1:
         return
-    x_center = random.randint(40, width - 40)
+    x_center = random.randint(40, WIDTH - 40)
     y_center = random.randint(newest_platform.rect.top - 100, newest_platform.rect.top - 30)
     seal = Seal(x_center, y_center)
     if pygame.sprite.spritecollideany(seal, all_sprites) is None:
@@ -139,14 +139,14 @@ def draw_sprites():
 
 def print_score():
     """Print the player's score"""
-    score_draw = my_font.render(str(main.score), 1, (0, 0, 0))
+    score_draw = MY_FONT.render(str(main.score), 1, (0, 0, 0))
     screen.blit(score_draw, (30, 30))
 
 def game_over():
     """Lose the game"""
     for sprite in all_sprites:
         sprite.kill()
-    lose = my_font.render("Game over!", 1, (0, 0, 0))
+    lose = MY_FONT.render("Game over!", 1, (0, 0, 0))
     screen.blit(lose, (150, 200))
     pygame.display.flip()
 
@@ -183,13 +183,13 @@ while 1:
     main.rect = main.rect.move(speed)
 
     if main.rect.centerx < 0:
-        main.rect.center = (width - 1, main.rect.centery)
-    if main.rect.centerx > width:
+        main.rect.center = (WIDTH - 1, main.rect.centery)
+    if main.rect.centerx > WIDTH:
         main.rect.center = (1, main.rect.centery)
 
     detect_collisions()
 
-    if main.rect.top < height / 3:
+    if main.rect.top < HEIGHT / 3:
         move_screen()
 
     if speed[1] > 0:
@@ -212,8 +212,8 @@ while 1:
     coll_enemies = pygame.sprite.spritecollide(main, enemies, False)
     if coll_enemies:
         if not main.boosting:
-            main.rect.bottom = height + 100
-    if main.rect.bottom > height:
+            main.rect.bottom = HEIGHT + 100
+    if main.rect.bottom > HEIGHT:
         game_over()
 
     pygame.display.flip()
